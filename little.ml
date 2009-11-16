@@ -1,6 +1,6 @@
 type symbol = string
 
-let string_of_symbol x = "\"" ^ x ^ "\""
+let string_of_symbol x = x
 
 type expr =
   | Var of symbol
@@ -8,11 +8,11 @@ type expr =
   | App of expr * expr
 
 let rec string_of_expr = function
-  | Var x -> "(Var " ^ (string_of_symbol x) ^ ")"
-  | Lamb (x,f) -> "(Lamb " ^ (string_of_symbol x) ^ 
-                  "," ^ (string_of_expr f) ^ ")"
-  | App (e1,e2) -> "(App " ^ (string_of_expr e1) ^ 
-                   "," ^ (string_of_expr e2) ^ ")"
+  | Var x -> "(" ^ string_of_symbol x ^ ")"
+  | Lamb (x,f) -> "(\\" ^ (string_of_symbol x) ^ 
+                  " -> " ^ (string_of_expr f) ^ ")"
+  | App (e1,e2) -> "(" ^ (string_of_expr e1) ^ 
+                   " " ^ (string_of_expr e2) ^ ")"
   
 type env = (symbol * expr) list
 let lookup x env = List.assoc x env
