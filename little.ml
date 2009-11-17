@@ -6,6 +6,7 @@ type expr =
   | Var of symbol
   | Lamb of symbol * expr
   | App of expr * expr
+and env = (symbol * expr) list
 
 let rec string_of_expr = function
   | Var x -> "(" ^ string_of_symbol x ^ ")"
@@ -14,7 +15,6 @@ let rec string_of_expr = function
   | App (e1,e2) -> "(" ^ (string_of_expr e1) ^ 
                    " " ^ (string_of_expr e2) ^ ")"
   
-type env = (symbol * expr) list
 let lookup x env = List.assoc x env
 let extend env x e = (x,e) :: env
 let empty () = []

@@ -1,7 +1,8 @@
 OCAMLMAKEFILE = ./OCamlMakefile
 
 RESULT  = litc
-SOURCES = little.ml \
+SOURCES = util.ml \
+          little.ml \
 					parser.mly \
 					lexer.mll \
 					litc.ml
