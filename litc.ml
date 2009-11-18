@@ -33,8 +33,8 @@ let main () =
   match parse stdin with
     | Left expr ->
       let result = Little.eval expr (Little.empty ()) in
-      printf "Input: %s\n" (Little.string_of_expr expr);
-      printf "Result: %s\n" (Little.string_of_expr result)
+      printf "Input: %s\n" (Little.string_of_t expr);
+      printf "Result: %s\n" (Little.string_of_t result)
     | Right err ->
       handle_error err
 

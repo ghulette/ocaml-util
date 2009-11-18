@@ -8,7 +8,7 @@
 %token ARROW
 %token EOF
 %start main
-%type <(Little.expr option)> main
+%type <(Little.t option)> main
 
 %%
 
@@ -20,6 +20,6 @@ main:
 expr:
   | BEGIN expr END { $2 }
   | ID { Little.Var $1 }
-  | LAMBDA ID ARROW expr { Little.Lamb ($2,$4) }
+  | LAMBDA ID ARROW expr { Little.Func ($2,$4) }
   | expr expr { Little.App ($1,$2) }
 ;
